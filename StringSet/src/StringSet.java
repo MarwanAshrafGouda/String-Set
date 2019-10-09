@@ -11,14 +11,14 @@ public class StringSet implements StringSetInterface {
     }
 
     public StringSet(int size){
-        int s = size/32 + (size%32==0?0:1);
+        int s = size/31 + (size%31==0?0:1);
         for(int i=0; i<s; i++){
             this.B.add(0);
         }
     }
 
     public void fillSet(int n){
-        this.B.set(n/32, this.B.get(n/32)|(int)Math.pow(2,n%32));
+        this.B.set(n/31, this.B.get(n/31)|(int)Math.pow(2,n%31));
     }
 
     @Override
@@ -29,7 +29,7 @@ public class StringSet implements StringSetInterface {
             int count = 0;
             while(tempInt>0) {
                 if (tempInt % 2 == 1) {
-                    printer += U.keySet().toArray()[count + i * 32] + ", ";
+                    printer += U.keySet().toArray()[count + i * 31] + ", ";
                 }
                 count++;
                 tempInt = tempInt >> 1;
@@ -48,7 +48,7 @@ public class StringSet implements StringSetInterface {
             int count = 0;
             while(tempInt>0) {
                 if (tempInt % 2 == 1) {
-                    printer += U.keySet().toArray()[count + i * 32] + ", ";
+                    printer += U.keySet().toArray()[count + i * 31] + ", ";
                 }
                 count++;
                 tempInt = tempInt >> 1;
@@ -66,8 +66,8 @@ public class StringSet implements StringSetInterface {
             int tempInt = this.getB().get(i);
             int count = 0;
             for(int j=0; j<31; j++) {
-                if ((tempInt % 2 == 0) && (count + i * 32 < U.keySet().size())) {
-                    printer += U.keySet().toArray()[count + i * 32] + ", ";
+                if ((tempInt % 2 == 0) && (count + i * 31 < U.keySet().size())) {
+                    printer += U.keySet().toArray()[count + i * 31] + ", ";
                 }
                 count++;
                 tempInt = tempInt >> 1;
@@ -131,7 +131,7 @@ public class StringSet implements StringSetInterface {
                         int count = 0;
                         while(tempInt>0){
                             if(tempInt%2 == 1){
-                                printer += map.keySet().toArray()[count+i*32] + ", ";
+                                printer += map.keySet().toArray()[count+i*31] + ", ";
                             }
                             count++;
                             tempInt = tempInt >> 1;
